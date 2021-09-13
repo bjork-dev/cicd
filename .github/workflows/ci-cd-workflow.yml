@@ -1,9 +1,7 @@
 name: DotNet CI/CD
 
-on: 
-  push:
-    paths:
-      - "**Dockerfile**"
+on: [push]
+
 jobs:
     # name: build & test on win/linux
     build:
