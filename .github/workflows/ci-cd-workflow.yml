@@ -37,9 +37,8 @@ jobs:
         - name: Build container image
           uses: docker/build-push-action@v1
           with:
-            push: true
             username: ${{github.actor}}
             password: ${{secrets.GITHUB_TOKEN}}
             registry: docker.pkg.github.com
-            repository: bjork-dev/github-actions-for-packages/tic-tac-toe
-            tags: user/app:latest
+            repository: bjork-dev/cicd/dotnet-app
+            tag_with_sha: true
