@@ -5,11 +5,8 @@ on: [push]
 jobs:
     # name: build & test on win/linux
     build:
-        runs-on: ${{ matrix.os }}
-        strategy:
-            matrix:
-                os: [ubuntu-latest, windows-latest]        
-
+        runs-on: ubuntu-latest
+        
         steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-dotnet@v1
@@ -50,5 +47,5 @@ jobs:
           with:
             context: .
             push: true
-            tags: latest
+            tags: user/app:latest
             labels: ${{ steps.meta.outputs.labels }}
