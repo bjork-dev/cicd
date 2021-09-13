@@ -14,9 +14,10 @@ jobs:
       with: 
         dotnet-version: 5.0.x
     - name: Build Project
-      run: dotnet build ./Source/SpacePark/
-    - name: Run Space Tests
-      run: dotnet test ./Source/SpaceTests/
+      run: dotnet build
+  test:
+    - name: Run Tests
+      run: dotnet test
           
   Build-and-Push-Docker-Image:
       runs-on: ubuntu-latest
