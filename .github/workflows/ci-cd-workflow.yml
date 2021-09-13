@@ -1,21 +1,23 @@
 name: DotNet CI/CD
 
-on:
-  push:
-    paths:
-      - "**Dockerfile**"
+on: [push]
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-dotnet@v1
-      with: 
-        dotnet-version: 5.0.x
-    - name: Build Project
-      run: dotnet build
-    - name: Run Tests
-      run: dotnet test
+    # name: build & test on win/linux
+    build:
+        runs-on: ${{ matrix.os }}
+
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest]
+        steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-dotnet@v1
+          with: 
+            dotnet-version: 5.0.x
+        - name: Build Project
+          run: dotnet build ./Source/SpacePark/
+        - name: Run Space Tests
+          run: dotnet test ./Source/SpaceTests/
           
   # Build-and-Push-Docker-Image:
   #     runs-on: ubuntu-latest
