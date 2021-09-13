@@ -5,11 +5,8 @@ on: [push]
 jobs:
     # name: build & test on win/linux
     build:
-        runs-on: ${{ matrix.os }}
+        runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                os: [ubuntu-latest, windows-latest]
         steps:
         - uses: actions/checkout@v2
         - uses: actions/setup-dotnet@v1
@@ -20,7 +17,7 @@ jobs:
         - uses: actions/upload-artifact@master
           with:
             name: dotnet artifacts
-            path: public/
+            path: .
         - name: Run Tests
           run: dotnet test
           
@@ -36,7 +33,7 @@ jobs:
           uses: actions/download-artifact@main
           with:
             name: dotnet artifacts
-            path: public
+            path: .
         - name: Build container image
           uses: docker/build-push-action@v2
           with:
