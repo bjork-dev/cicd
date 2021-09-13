@@ -33,7 +33,7 @@ jobs:
           uses: actions/download-artifact@main
           with:
             name: dotnet artifacts
-            path: .
+            path: publish
         - name: Build container image
           uses: docker/build-push-action@v2
           with:
