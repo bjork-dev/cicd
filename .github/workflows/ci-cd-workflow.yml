@@ -24,6 +24,7 @@ jobs:
         env:
           REGISTRY: ghcr.io # Github Container Registry
           IMAGE_NAME: ${{ github.repository }}
+        
 
         steps:
         - name: Checkout repository
@@ -47,5 +48,4 @@ jobs:
           with:
             context: .
             push: true
-            flavor: |
-                latest=true
+            tags: latest
