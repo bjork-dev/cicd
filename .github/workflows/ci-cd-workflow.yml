@@ -36,17 +36,6 @@ jobs:
             registry: ghcr.io # Github Container Registry
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
-            
-        - name: Extract metadata (tags, labels) for Docker
-          id: meta
-          uses: docker/metadata-action@v3
-          with:
-            images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-            tags: |
-                type=ref,event=branch
-                type=ref,event=pr
-                type=semver,pattern={{version}}
-                type=semver,pattern={{major}}.{{minor}}
 
         - name: Build and push Docker image
           uses: docker/build-push-action@v2
@@ -54,4 +43,4 @@ jobs:
             context: .
             push: true
             tags: ghcr.io/bjork-dev/cicd:latest
-            labels: ${{ steps.meta.outputs.labels }}
+            labels: helloworld
