@@ -17,6 +17,10 @@ jobs:
             dotnet-version: 5.0.x
         - name: Build Project
           run: dotnet build
+        - uses: actions/upload-artifact@master
+          with:
+            name: dotnet artifacts
+            path: public/
         - name: Run Tests
           run: dotnet test
           
