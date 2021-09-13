@@ -25,12 +25,15 @@ jobs:
         steps:
         - name: Checkout
           uses: actions/checkout@v2
+          name: Login to GitHub Container Registry
+          uses: docker/login-action@v1
+          with:
+            registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
         - name: Build container image
           uses: docker/build-push-action@v2
           with:
             push: true
-            username: ${{github.actor}}
-            password: ${{secrets.GITHUB_TOKEN}}
-            registry: docker.pkg.github.com
-            repository: bjork-dev/cicd/dotnet-app
-            tags: app:latest
+            # repository: bjork-dev/cicd/dotnet-app
+            tags: user/app:latest
