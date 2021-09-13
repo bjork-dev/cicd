@@ -15,7 +15,7 @@ jobs:
         dotnet-version: 5.0.x
     - name: Build Project
       run: dotnet build
-    test:
+  test:
     runs-on: ubuntu-latest
     steps:
     - name: Run Tests
