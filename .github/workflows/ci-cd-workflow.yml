@@ -1,6 +1,9 @@
 name: DotNet CI/CD
 
-on: [push]
+on: 
+    push:
+     tags:
+        - 'v*'
 
 jobs:
     # name: build & test on win/linux
@@ -48,4 +51,5 @@ jobs:
           with:
             context: .
             push: true
-            tags: latest
+            tags: ${{ steps.meta.outputs.tags }}
+            labels: ${{ steps.meta.outputs.labels }}
