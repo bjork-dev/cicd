@@ -53,5 +53,5 @@ jobs:
           with:
             context: .
             push: true
-            tags: ${{ steps.meta.outputs.tags }}
+            tags: ghcr.io/bjork-dev/cicd:latest
             labels: ${{ steps.meta.outputs.labels }}
